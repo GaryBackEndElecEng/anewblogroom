@@ -1,0 +1,93 @@
+.username {
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: url("/images/colorWorld.png");
+  color: transparent;
+  font-size: 150%;
+  background-size: 200% 200%;
+  background-position: 50% 50%;
+  animation: moveAlways 10s infinite;
+}
+@keyframes moveAlways {
+  from {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+
+.containerImage {
+  background-image: url("/images/happyFamily.png");
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  min-height: 20vh;
+  width: 100%;
+}
+
+.bgImage {
+  box-shadow: 2px 2px 50px 10px rgba(0, 0, 0, 0.4),
+    -2px -2px 50px 10px rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ImgContainerDash {
+  opacity: 1;
+  transform: scale(1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: auto;
+  border: 1px solid black;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  animation: growIn 2s ease-in-out;
+}
+.dashImg {
+  box-shadow: 1px 1px 6px 2px white, -1px -1px 6px 2px white;
+}
+.ImgContainerON {
+  opacity: 1;
+  transform: scale(1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: auto;
+  animation: growIn 2s ease-in-out;
+}
+.ImgContainerOFF {
+  opacity: 0;
+  transform: scale(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: auto;
+}
+@keyframes growIn {
+  from {
+    transform: translateX(40%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 420px) {
+  .ImgContainerON {
+    width: 120px;
+    height: 100px;
+  }
+  .username {
+    font-size: 85%;
+  }
+}

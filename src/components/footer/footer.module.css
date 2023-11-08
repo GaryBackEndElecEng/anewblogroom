@@ -1,0 +1,21 @@
+.spanCol {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+}
+.mainFooter {
+  box-shadow: 1px 1px 10px 1px hsla(132, 98%, 37%, 0.9),
+    -1px -1px 10px 1px hsla(132, 98%, 37%, 0.9);
+}
+.image {
+  min-height: 10vh;
+  background-size: 200% 200%;
+  background-position: 50% 100%;
+  /* box-shadow: 1px 1px 5px 1px white, -1px -1px 5px 1px white; */
+  width: 100%;
+}

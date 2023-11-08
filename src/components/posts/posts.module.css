@@ -1,0 +1,158 @@
+.card {
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  padding-block: 1rem;
+  color: whitesmoke;
+  border-radius: 15px 15px 15px 15px;
+}
+.userImage {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  float: left;
+  margin-block: 25px;
+  margin-right: 10px;
+  shape-outside: circle();
+  border: 1px solid white;
+  box-shadow: 1px 1px 5px 2px hsl(141, 98%, 44%),
+    -1px -1px 5px 2px hsl(118, 94%, 42%);
+}
+.cardInset {
+  z-index: 0;
+  inset: -1rem;
+  border-radius: inherit;
+  box-shadow: 1px 1px 5px 2px hsl(196, 97%, 49%),
+    -1px -1px 5px 2px hsl(192, 91%, 50%);
+  color: red;
+}
+.divider {
+  box-shadow: 1px 1px 15px 2px hsl(139, 98%, 33%),
+    -1px -1px 15px 2px hsl(122, 98%, 33%);
+}
+
+/*--------- ICONS--------- */
+
+.good {
+  color: hsl(0, 100%, 30%);
+}
+.great {
+  color: hsl(0, 80%, 80%);
+  border: 1px solid white;
+}
+.loveit {
+  color: hsl(0, 100%, 40%);
+  box-shadow: 1px 1px 5px 1px hsl(0, 75%, 89%),
+    -1px -1px 5px 1px hsl(0, 71%, 85%);
+  border-radius: 50%;
+}
+.poor {
+  color: hsl(300, 100%, 20%);
+}
+.average {
+  color: hsl(60, 100%, 50%);
+}
+.amazed {
+  color: hsl(0, 100%, 50%);
+  box-shadow: 1px 1px 8px 2px hsl(0, 100%, 70%),
+    -1px -1px 8px 2px hsl(0, 100%, 70%);
+  border-radius: 50%;
+}
+.noname {
+  color: lightgrey;
+}
+
+.buttonsm {
+  font-size: 80%;
+  padding-inline: 1rem;
+  padding-block: 0.15rem;
+  box-shadow: 1px 1px 7px 2px hsl(185, 97%, 49%),
+    -1px -1px 7px 2px hsl(178, 91%, 49%);
+  border: 1px hsl(176, 96%, 11%);
+  border-radius: 30px 30px 30px 30px;
+  background: rgb(184, 197, 199);
+  color: black;
+}
+.buttonsm:hover {
+  background: hsl(188, 12%, 45%);
+  color: rgb(53, 1, 1);
+}
+/* ------------GENSTARS----------- */
+.genstars > svg {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+  animation: growIn 2s ease-in-out;
+}
+@keyframes growIn {
+  from {
+    transform: translateX(-100%) scale(0.5);
+    opacity: 0.3;
+  }
+  to {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* -------POST HEADER------------- */
+
+.postHeader {
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 28vh;
+  position: relative;
+  display: grid;
+  place-content: center;
+  padding-inline: 1rem;
+}
+.postHeader > p {
+  background: rgba(0, 0, 0, 0.409);
+  padding: 1rem;
+}
+.statement {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+  animation: slideIn 2s ease-in-out;
+}
+.statementHide {
+  opacity: 0;
+  transform: translateX(-100%) scale(0.3);
+  transition: all 2s ease-in-out;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%) scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 900px) {
+  .postHeader {
+    background-size: 150% 100%;
+    height: 28vh;
+  }
+}
+@media screen and (max-width: 420px) {
+  .postHeader {
+    background-size: 180% 100%;
+    height: 28vh;
+  }
+}
+
+/* ----POST DETAIL---- */
+
+.userImg {
+  margin-right: 5px;
+  margin-block: 20px;
+  shape-outside: circle();
+  border-left: 1px solid red;
+}

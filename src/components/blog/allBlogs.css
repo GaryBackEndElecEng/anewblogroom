@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.allBlog_container {
+}
+.allBlog_subContainer {
+}
+h3.allBlogs_mainText {
+}
+.allBlogs_livingLearning {
+}
+/* -------BLOG HEADER------------- */
+
+.postHeader {
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 28vh;
+  position: relative;
+  display: grid;
+  place-content: center;
+  padding-inline: 1rem;
+}
+.postHeader > p {
+  background: rgba(0, 0, 0, 0.409);
+  padding: 1rem;
+}
+.statement {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+  animation: slideIn 2s ease-in-out;
+}
+.statementHide {
+  opacity: 0;
+  transform: translateX(-100%) scale(0.3);
+  transition: all 2s ease-in-out;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%) scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 900px) {
+  .postHeader {
+    background-size: 150% 100%;
+    height: 28vh;
+  }
+}
+@media screen and (max-width: 420px) {
+  .postHeader {
+    background-size: 180% 100%;
+    height: 28vh;
+  }
+}

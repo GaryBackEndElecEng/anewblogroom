@@ -1,0 +1,61 @@
+.bg_image {
+  background-position: 40% 85%;
+  background-size: 150% 120%;
+  background-image: url("/images/happyFamily.png");
+}
+.GB_image {
+  width: 50px;
+  height: 55px;
+  /* padding: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 15px 1px white, -1px -1px 10px 1px white;
+  transition: all 0.67s ease-in-out;
+}
+.GB_imageMobile {
+  width: 40px;
+  height: 45px;
+  /* padding: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 15px 1px white, -1px -1px 10px 1px white;
+  transition: all 0.67s ease-in-out;
+}
+.GB_image:hover {
+  box-shadow: 1px 1px 10px 2px white, -1px -1px 10px 2px white;
+  transition: all 0.67s ease-in-out;
+}
+/* ----LINKS--- */
+
+.linkText[data-word]:hover::before {
+  display: block;
+  content: attr(data-word);
+  opacity: 1;
+  transform: scale(1);
+  font-size: 50%;
+  position: absolute;
+  top: 3rem;
+  left: 0%;
+  background: rgb(243, 170, 161);
+  padding: 0.25rem;
+  color: black;
+  border-radius: 15px 15px 15px 15px;
+  transition: all 0.5s ease-in;
+}
+.linkText[data-word]::before {
+  opacity: 0;
+  border-radius: 15px 15px 15px 15px;
+  content: attr(data-word);
+  transform: scale(0);
+  transition: all 0.5s ease-out;
+  font-size: 50%;
+  display: block;
+  position: absolute;
+  top: 3rem;
+  left: 0%;
+  background: whitesmoke;
+  padding: 0.25rem;
+  color: black;
+}

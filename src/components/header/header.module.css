@@ -1,0 +1,194 @@
+.bg_image {
+  background-position: 40% 85%;
+  background-size: 150% 120%;
+  background-image: url("/images/happyFamily.png");
+}
+.featureInset {
+  inset: -2rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 1px 1px 15px 1px hsla(132, 98%, 37%, 0.9),
+    -1px -1px 15px 1px hsla(132, 98%, 37%, 0.9);
+}
+
+.profile {
+  width: 32%;
+  float: left;
+  margin-top: 50px;
+  margin-right: 10px;
+  margin-bottom: 50px;
+  shape-outside: circle();
+}
+.unorder {
+  text-indent: 1rem;
+  margin-left: 0.5rem;
+}
+.unorder > li {
+  font-size: 115%;
+}
+.unorder > li > span {
+  color: hsla(127, 91%, 50%, 0.9);
+  font-size: 110%;
+  text-decoration: dotted;
+  text-decoration-color: rgba(255, 190, 150, 0.9);
+  text-decoration-line: underline;
+  line-height: 2;
+  text-underline-offset: 8px;
+}
+.column2 {
+  width: 100%;
+  height: auto;
+}
+.para span::first-letter {
+  color: rgba(255, 190, 150, 0.9);
+  font-weight: bold;
+  margin-right: 0.5rem;
+  -webkit-initial-letter: 1;
+  initial-letter: 1;
+}
+.paraspan > span {
+  color: hsla(23, 100%, 69%, 0.9);
+  font-weight: bold;
+  margin-right: 0.5rem;
+  -webkit-initial-letter: 1;
+  initial-letter: 1;
+}
+.paraspan > span > span.italic {
+  font-style: italic;
+}
+
+@media screen and (max-width: 900px) {
+  .profile {
+    width: 40%;
+    float: left;
+    margin-top: 60px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+    shape-outside: circle();
+  }
+}
+@media screen and (max-width: 400px) {
+  .profile {
+    width: 60%;
+    float: center;
+    margin-top: 60px;
+    margin-right: 10px;
+    margin-bottom: 60px;
+    shape-outside: circle();
+  }
+}
+/* CLIENT HEADER */
+
+.username {
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: url("/images/colorWorld.png");
+  color: transparent;
+  font-size: 150%;
+  background-size: 200% 200%;
+  background-position: 50% 50%;
+  animation: moveAlways 10s infinite;
+}
+@keyframes moveAlways {
+  from {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+.bgImage {
+  box-shadow: 2px 2px 50px 10px rgba(0, 0, 0, 0.4),
+    -2px -2px 50px 10px rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ImgContainerON {
+  opacity: 1;
+  transform: scale(1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: growIn 2s ease-in-out;
+}
+.ImgContainerOFF {
+  opacity: 0;
+  transform: scale(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@keyframes growIn {
+  from {
+    transform: translateX(40%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+/* ------NEEDREGISTER------ */
+.showNeed {
+  display: flex;
+  direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  inset: 0rem;
+  font-size: 150%;
+  transition: all 4s ease-in;
+  opacity: 1;
+  font-style: italic;
+  transform: translate(0%, 0%) scale(1);
+}
+.hideNeed {
+  display: flex;
+  direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  inset: 0rem;
+  width: 100%;
+  font-size: 150%;
+  font-style: italic;
+  opacity: 0;
+  transition: all 4s ease-out;
+  transform: translate(-100%, -100%) scale(0.5);
+}
+.showNeed::before,
+.hideNeed::before {
+  display: block;
+  content: "";
+  width: 10px;
+  height: 50%;
+  border-radius: 0px 30px 30px 0px;
+  background: hsl(182, 100%, 50%);
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 420px) {
+  .showNeed,
+  .hideNeed {
+    font-size: 120%;
+    flex-wrap: nowrap;
+  }
+  .showNeed::before,
+  .hideNeed::before {
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 2px;
+    height: 30%;
+  }
+}
