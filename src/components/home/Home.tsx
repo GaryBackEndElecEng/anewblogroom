@@ -24,7 +24,7 @@ export default function Home({ account }: { account: userAccountType | undefined
     return (
         <main className="flex min-h-[50vh] flex-col items-center justify-center  " >
             <GetError />
-            <MainLinks account={account} />
+            {/* <MainLinks account={account} /> */}
         </main>
     )
 }
