@@ -7,13 +7,13 @@ const nextConfig = {
     serverActions: true,
     serverComponentsExternalPackages: ["@prisma/client", "bcryptjs"],
   },
-  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-  //   config.externals.push({
-  //     "@aws-sdk/signature-v4-multi-region":
-  //       "commonjs @aws-sdk/signature-v4-multi-region",
-  //   });
-  //   return config;
-  // },
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.externals.push({
+      "@aws-sdk/signature-v4-multi-region":
+        "commonjs @aws-sdk/signature-v4-multi-region",
+    });
+    return config;
+  },
   async headers() {
     return [
       {
