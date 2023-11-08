@@ -1,13 +1,16 @@
 
 import React from 'react'
 import SubHeader from "./SubHeader";
-import { getAccount } from "@lib/nextAuth";
+import { getServerSession } from 'next-auth/next';
+import authOptions from '@/lib/authOptions';
+
 
 export default async function MainHeader() {
-    const account = await getAccount();
+    const session = await getServerSession(authOptions);
+
     return (
         <>
-            <SubHeader account={account} />
+            <SubHeader session={session} />
         </>
 
     )

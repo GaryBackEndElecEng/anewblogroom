@@ -123,7 +123,7 @@ export default function RootLayout({
               <div className="mx-auto lg:container bg-slate-900 min-h-[100vh] relative">
 
 
-                {/* <MainHeader /> */}
+                <MainHeader />
 
 
                 {children}

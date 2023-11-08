@@ -94,18 +94,20 @@ const GeneralContextProvider = (props: any) => {
     const [genInfo, setGenInfo] = React.useState<genInfoType[]>([]);
     const [getError, setGetError] = React.useState<string>("");
 
-    React.useMemo(async () => {
-        try {
-            const { data } = await axios.get(`/api/getpagehits`);
-            const body: mainPageHit[] | undefined = await data;
-            if (!body) return
-            return setPageHitArr(body)
-        } catch (error) {
-            let message: string = `${getErrorMessage(error)}@api/getpagehits`
-            setGetError(message)
-            return console.error(message)
+    React.useEffect(() => {
+        async function getpageHits() {
+            try {
+                const { data } = await axios.get(`/api/getpagehits`);
+                const body: mainPageHit[] | undefined = await data;
+                if (!body) return
+                return setPageHitArr(body)
+            } catch (error) {
+                let message: string = `${getErrorMessage(error)}@api/getpagehits`
+                setGetError(message)
+                return console.error(message)
+            }
         }
-        ;
+
     }, []);
 
 
@@ -122,7 +124,7 @@ const GeneralContextProvider = (props: any) => {
             }
         }
         if (pageHit) {
-            recordHit();
+            // recordHit();
         }
     }, [pageHit]);
 
@@ -142,7 +144,7 @@ const GeneralContextProvider = (props: any) => {
             }
         }
 
-        // getGenInfo();
+        getGenInfo();
 
     }, []);
 

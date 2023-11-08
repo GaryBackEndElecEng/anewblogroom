@@ -7,6 +7,7 @@ import { GeneralContext } from '../context/GeneralContextProvider';
 import { usePathname } from "next/navigation";
 import NeedRegister from "./NeedRegister";
 import { userAccountType } from '@/lib/Types';
+import { Session } from 'next-auth';
 
 export const introArr = [
     { id: 1, ital: "Firstly", phr: "you have your very own ", ital1: "Home Page, with your name in the URL", phr1: " along with, your generated head board with a summary list of ALL your blogs." },
@@ -17,9 +18,9 @@ export const introArr = [
 ]
 //all your links will have metadata that facilitates blog distribution through social media. This allows easy link distribution.
 type accountType = {
-    account: userAccountType | undefined;
+    session: Session | null;
 }
-export default function SubHeader({ account }: accountType) {
+export default function SubHeader({ session }: accountType) {
 
     const pathname = usePathname();
     const { setPageHit } = React.useContext(GeneralContext);
@@ -86,7 +87,7 @@ export default function SubHeader({ account }: accountType) {
                         </section>
 
                     </section>
-                    {!(account && account.loaded) && <NeedRegister />}
+                    {!(session) && <NeedRegister />}
                 </React.Fragment>
             }
         </div>
