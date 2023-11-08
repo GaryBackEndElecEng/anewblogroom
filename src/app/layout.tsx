@@ -117,22 +117,22 @@ export default function RootLayout({
 
       <body className={"mx-auto  dark:bg-slate-400 bg-slate-700 text-white w-full  "}>
         <Providers>
-          <GeneralContextProvider>
-            <InputContextProvider>
-              <NavBar />
-              <div className="mx-auto lg:container bg-slate-900 min-h-[100vh] relative">
+          {/* <GeneralContextProvider> */}
+          {/* <InputContextProvider> */}
+          <NavBar />
+          <div className="mx-auto lg:container bg-slate-900 min-h-[100vh] relative">
 
 
-                <MainHeader />
+            <MainHeader />
 
 
-                {children}
+            {children}
 
 
-              </div>
-              <Footer />
-            </InputContextProvider>
-          </GeneralContextProvider>
+          </div>
+          <Footer />
+          {/* </InputContextProvider> */}
+          {/* </GeneralContextProvider> */}
         </Providers>
       </body>
     </html>
