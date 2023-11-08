@@ -7,10 +7,10 @@ import { getAccount } from "@lib/nextAuth";
 
 
 export default async function page() {
-  const isAccount = await getAccount() ? await getAccount() : undefined
-  const account = isAccount ? isAccount : undefined;
+  // const isAccount = await getAccount() ? await getAccount() : undefined
+  // const account = isAccount ? isAccount : undefined;
   return (
-    <h1> this is the page{JSON.stringify(account)}</h1>
+    <h1> this is the page</h1>
   )
 }
 

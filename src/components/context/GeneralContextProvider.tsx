@@ -94,37 +94,37 @@ const GeneralContextProvider = (props: any) => {
     const [genInfo, setGenInfo] = React.useState<genInfoType[]>([]);
     const [getError, setGetError] = React.useState<string>("");
 
-    React.useMemo(async () => {
-        try {
-            const { data } = await axios.get(`/api/getpagehits`);
-            const body: mainPageHit[] | undefined = await data;
-            if (!body) return
-            return setPageHitArr(body)
-        } catch (error) {
-            let message: string = `${getErrorMessage(error)}@api/getpagehits`
-            setGetError(message)
-            return console.error(message)
-        }
-        ;
-    }, []);
+    // React.useMemo(async () => {
+    //     try {
+    //         const { data } = await axios.get(`/api/getpagehits`);
+    //         const body: mainPageHit[] | undefined = await data;
+    //         if (!body) return
+    //         return setPageHitArr(body)
+    //     } catch (error) {
+    //         let message: string = `${getErrorMessage(error)}@api/getpagehits`
+    //         setGetError(message)
+    //         return console.error(message)
+    //     }
+    //     ;
+    // }, []);
 
 
-    React.useEffect(() => {
-        const recordHit = async () => {
-            if (!pageHit) return
-            try {
-                await axios.post(`/api/page-hit`, pageHit);
-                //components
-            } catch (error) {
-                let message: string = `${getErrorMessage(error)}@api/page-hit`
-                setGetError(message)
-                return console.error(message)
-            }
-        }
-        if (pageHit) {
-            recordHit();
-        }
-    }, [pageHit]);
+    // React.useEffect(() => {
+    //     const recordHit = async () => {
+    //         if (!pageHit) return
+    //         try {
+    //             await axios.post(`/api/page-hit`, pageHit);
+    //             //components
+    //         } catch (error) {
+    //             let message: string = `${getErrorMessage(error)}@api/page-hit`
+    //             setGetError(message)
+    //             return console.error(message)
+    //         }
+    //     }
+    //     if (pageHit) {
+    //         recordHit();
+    //     }
+    // }, [pageHit]);
 
     React.useEffect(() => {
         const getGenInfo = async () => {
@@ -142,7 +142,7 @@ const GeneralContextProvider = (props: any) => {
             }
         }
 
-        getGenInfo();
+        // getGenInfo();
 
     }, []);
 
