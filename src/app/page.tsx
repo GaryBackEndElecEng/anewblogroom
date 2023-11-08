@@ -2,15 +2,15 @@
 import Home from "@component/home/Home"
 import React from "react";
 import { getAccount } from "@lib/nextAuth";
-//<Home account={account} />
+import { getServerSession } from "next-auth/next";
+import authOptions from "@/lib/authOptions";
 
 
 
 export default async function page() {
-  // const isAccount = await getAccount() ? await getAccount() : undefined
-  // const account = isAccount ? isAccount : undefined;
+  const session = await getServerSession(authOptions);
   return (
-    <h1> this is the page</h1>
+    <Home session={session} />
   )
 }
 

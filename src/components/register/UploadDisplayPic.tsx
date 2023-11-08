@@ -26,7 +26,7 @@ export default function UploadDisplayPic({ Data, setData }: mainType) {
         e.preventDefault();
         if (!Data) return
         setIsLoading(true)
-        console.log("@submit", Data)
+
         try {
             const res = await fetch(`/api/media?Key=${Data.imgKey}`);
             const body: s3mediaType = await res.json();

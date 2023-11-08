@@ -11,6 +11,8 @@ import MainHeader from "@/components/header/MainHeader";
 import Footer from "@component/footer/Footer";
 import InputContextProvider from "@context/InputTypeProvider"
 import ErrorBoundary from "@/app/error";
+import { getServerSession } from 'next-auth/next';
+import authOptions from '@/lib/authOptions';
 
 
 
@@ -106,12 +108,12 @@ export const metadata: Metadata = {
 
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
 
@@ -123,7 +125,7 @@ export default function RootLayout({
               <div className="mx-auto lg:container bg-slate-900 min-h-[100vh] relative">
 
 
-                <MainHeader />
+                <MainHeader session={session} />
 
 
                 {children}

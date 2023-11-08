@@ -4,10 +4,11 @@ import MainLinks from "@component/home/MainLinks";
 import { GeneralContext } from '@/components/context/GeneralContextProvider';
 import { userAccountType } from "@/lib/Types";
 import GetError from "@component/comp/GetError";
+import { Session } from "next-auth";
 // import SubHeader from "@component/header/SubHeader";
 
 
-export default function Home({ account }: { account: userAccountType | undefined }) {
+export default function Home({ session }: { session: Session | null }) {
 
     const { setPageHit } = React.useContext(GeneralContext);
 
@@ -24,7 +25,7 @@ export default function Home({ account }: { account: userAccountType | undefined
     return (
         <main className="flex min-h-[50vh] flex-col items-center justify-center  " >
             <GetError />
-            {/* <MainLinks account={account} /> */}
+            <MainLinks session={session} />
         </main>
     )
 }

@@ -3,14 +3,15 @@ import React from 'react'
 import Button from "@component/comp/Button";
 import styles from "./home.module.css"
 import type { dataType, userAccountType } from "@lib/Types";
+import type { Session } from 'next-auth';
 
 
 type maindataType = {
     dataLink: dataType,
-    account: userAccountType | undefined
+    session: Session | null
 }
 
-export default function LinkButton({ dataLink, account }: maindataType) {
+export default function LinkButton({ dataLink, session }: maindataType) {
 
     const linkRef = React.useRef(null);
     const [show, setShow] = React.useState<boolean>(false);
@@ -19,7 +20,7 @@ export default function LinkButton({ dataLink, account }: maindataType) {
     React.useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             let entry = entries[0]
-            if (account && account.loaded) {
+            if (session) {
                 setShow(true);
                 setTitle(true);
             } else {
@@ -31,7 +32,7 @@ export default function LinkButton({ dataLink, account }: maindataType) {
         }, { threshold: 0.8 });
         if (!linkRef.current) return
         observer.observe(linkRef.current)
-    }, [setShow, linkRef, account]);
+    }, [setShow, linkRef, session]);
 
     const circLinks = "p-1 px-2 w-[100px] h-[100px] rounded-full border border-orange-400 shadow shadow-orange-800 m-auto flex flex-col items-center justify-center hover:shadow-emerald-300 hover:shadow-md";
 
