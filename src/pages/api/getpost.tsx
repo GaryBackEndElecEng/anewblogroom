@@ -40,7 +40,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             });
             if (post) {
                 const insertPost = insertUrlPost(post as postType);
-                res.setHeader('Cache-Control', 's-maxage=86400')
+                res.setHeader('Cache-Control', 'max-age=14400')
                 res.status(200).json(insertPost)
                 await prisma.$disconnect()
             }

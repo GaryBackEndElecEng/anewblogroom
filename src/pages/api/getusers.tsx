@@ -29,6 +29,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         if (users) {
             const body: userType[] | [] = users as userType[]
             const insertS3Img: userType[] = await gets3Users(body)
+            res.setHeader('Cache-Control', 'max-age=14400')
             res.status(200).json(insertS3Img)
 
         } else {

@@ -40,6 +40,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 });
                 if (user) {
                     const insertUser = await insertImgUser(user as userType)
+                    res.setHeader('Cache-Control', 'max-age=14400')
                     res.status(200).json(insertUser);
                 } else {
                     res.status(400).json({ message: " user not found" })

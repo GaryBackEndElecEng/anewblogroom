@@ -36,6 +36,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 imageUrl: imageUrl,
                 key: Key
             }
+            res.setHeader('Cache-Control', 'max-age=14400')
             res.status(200).json(retObj)
         } else {
             res.status(400).json({ imageUrl: null, key: Key })

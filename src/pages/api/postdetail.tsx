@@ -47,6 +47,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                     const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
                     tempPost.imageUrl = url;
                 }
+                res.setHeader('Cache-Control', 'max-age=14400')
                 res.status(200).json(tempPost)
 
             } else {

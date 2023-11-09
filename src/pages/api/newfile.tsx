@@ -40,6 +40,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                         fileUrl: mkUrl
                     }
                 })
+                res.setHeader('Cache-Control', 'max-age=14400')
                 res.status(200).json(fileupdate)
             }
         } else {

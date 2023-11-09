@@ -47,6 +47,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                         return user
                     })
                 );
+                res.setHeader('Cache-Control', 'max-age=14400')
                 return res.status(200).json(s3Users)
             }
         } catch (error) {

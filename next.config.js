@@ -25,9 +25,10 @@ const nextConfig = {
             value: "true",
           },
           {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
+            key: "Cach-Control",
+            value: "public,max-age=14400,stale-while-revalidate=7200", // Matched parameters can be used in the value
           },
+
           {
             key: "Access-Control-Allow-Origin",
             value:
@@ -65,6 +66,23 @@ const nextConfig = {
             key: "Access-Control-Allow-Origin",
             value:
               "newmasterconnect.herokuapp.com,www.masterconnect.ca,ww.master-connect.ca,www.garymasterconnect.com,cdn.jsdelivr.net,compute-1.amazonaws.com,master-sale.herokuapp.com,awsprismabucket105646-dev.s3.amazonaws.com,localhost:3000,main.dx5wvmbhcdn6z.amplifyapp.com",
+          },
+        ],
+      },
+      {
+        source: "/api/getposts",
+        headers: [
+          {
+            key: "Cach-Control",
+            value: "public,max-age=14400,stale-while-revalidate=7200", // Matched parameters can be used in the value
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET,DELETE,PATCH,POST,PUT",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
           },
         ],
       },

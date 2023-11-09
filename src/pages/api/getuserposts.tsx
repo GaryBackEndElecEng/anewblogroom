@@ -27,6 +27,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             if (posts && posts.length > 0) {
 
                 const retPosts: postType[] | undefined = await insertUrlPosts(posts);
+                res.setHeader('Cache-Control', 'max-age=14400')
                 res.status(200).json(retPosts);
             } else {
                 res.status(404).json({ message: "no posts from getuserposts" });
