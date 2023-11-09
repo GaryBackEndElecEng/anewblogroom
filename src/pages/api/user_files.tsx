@@ -44,7 +44,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
             if (userFiles) {
                 const insertFiles = await insertFilesUrls(userFiles);
-
+                res.setHeader('Cache-Control', 's-maxage=86400')
                 res.status(200).json(insertFiles)
 
             } else {

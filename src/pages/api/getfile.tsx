@@ -41,7 +41,7 @@ export default async function handleFile(req: NextApiRequest, res: NextApiRespon
         // console.log(file)
         if (file) {
             const retInsertFile = insertFileUrls(file as unknown as fileType);
-            // console.log("getfile.tsx=> returned file", retInsertFile)
+            res.setHeader('Cache-Control', 's-maxage=86400')
             res.status(200).json(retInsertFile)
         } else {
             res.status(400).json({ message: `bad request` })

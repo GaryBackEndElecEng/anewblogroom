@@ -41,7 +41,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             });
             if (files && files.length > 0) {
                 let arr: fileType[] = await insertFilesUrls(files)
-
+                res.setHeader('Cache-Control', 's-maxage=86400')
                 res.status(200).json(arr);
                 await prisma.$disconnect()
 
