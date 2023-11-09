@@ -1,4 +1,4 @@
-"use server";
+
 import React from 'react';
 // import { getAccount } from "@lib/nextAuth";
 import Posts from "@component/posts/Posts";

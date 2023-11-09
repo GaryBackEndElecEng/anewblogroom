@@ -8,7 +8,7 @@ import getFormattedDate from "@lib/getFormattedDate";
 import { getUserObj } from '@/lib/generalFunc';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { getPosts, getUsers } from '@/lib/fetchTypes';
+import { getUsers } from '@/lib/fetchTypes';
 import PostItem from "@component/posts/PostItem";
 import Header from "./Header";
 import { useRouter } from "next/navigation";
@@ -81,4 +81,16 @@ export default function Posts() {
             </div>
         </React.Fragment>
     )
+}
+
+export async function getPosts() {
+
+    const res = await fetch(`/api/getposts`);
+    if (res.ok) {
+        const posts: postType[] | undefined = await res.json();
+        return posts
+    }
+    return
+
+
 }

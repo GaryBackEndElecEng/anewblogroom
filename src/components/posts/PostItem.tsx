@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useRouter } from "next/navigation"
 import PostLike from "@/components/posts/PostLike";
 import PostRate from "@component/posts/PostRate";
-import { getUser } from '@/lib/fetchTypes';
 import { GeneralContext } from '../context/GeneralContextProvider';
 
 type mainType = {
@@ -80,4 +79,12 @@ export default function PostItem({ post, date }: mainType) {
         </div>
 
     )
+}
+
+export async function getUser(userId: string) {
+    const res = await fetch(`/api/getuser?userId=${userId}`);
+    if (res.ok) {
+        const user: userTypeShort = await res.json();
+        return user
+    }
 }
