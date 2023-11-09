@@ -18,7 +18,7 @@ import authOptions from '@/lib/authOptions';
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://main.dx5wvmbhcdn6z.amplifyapp.com/"),
+  metadataBase: new URL("https://www.ablogroom.com/"),
   title: {
     default: "Blog Room",
     template: `%s | Blog Room`,
