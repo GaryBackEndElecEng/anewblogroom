@@ -38,7 +38,7 @@ export default function BlogLayout({
 }) {
     return (
         <div>
-            <BlogHeader />
+            {/* <BlogHeader /> */}
             {children}
         </div>
     )

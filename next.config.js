@@ -89,10 +89,10 @@ const nextConfig = {
             key: "x-postId",
             value: ":postId", // Matched parameters can be used in the value
           },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
+          // {
+          //   key: "X-Content-Type-Options",
+          //   value: "nosniff",
+          // },
           {
             key: "Access-Control-Allow-Origin",
             value:

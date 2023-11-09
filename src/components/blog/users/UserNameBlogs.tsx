@@ -1,15 +1,18 @@
 "use client";
 import React from 'react';
-import type { fileType, userType } from "@lib/Types";
+import type { fileType, userType, userTypeShort } from "@lib/Types";
 import Image from 'next/image';
 import { GeneralContext } from '@context/GeneralContextProvider';
 import { Heading, Section, Summary, SubHeading, Conclusion } from "@component/blogElements/elements";
-import { getUsernamePage, getuserFiles } from "@lib/fetchTypes";
+import { getuserFiles } from "@lib/fetchTypes";
 import getFormattedDate from "@lib/getFormattedDate";
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
 import { InputContext } from '@/components/context/InputTypeProvider';
 import ClientFile from "@component/blog/users/ClientFile";
+
+
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : "http://localhost:3000"
 
 type usernameType = {
     username: string
@@ -17,10 +20,11 @@ type usernameType = {
 }
 export default function UserNameBlogs({ username }: usernameType) {
     const pathname = usePathname();
-    const { client, setClient, setPageHit, setGetError } = React.useContext(GeneralContext);
+    const { setPageHit, setGetError } = React.useContext(GeneralContext);
     const { setUserFiles, userFiles } = React.useContext(InputContext);
-    const [numFiles, setNumFiles] = React.useState<number>(1);
-    console.log("inside", username)
+    const [client, setClient] = React.useState<userTypeShort>({} as userTypeShort)
+
+
     React.useMemo(async () => {
         const getuser = await getUsernamePage(username);
         if (!getuser) { return setGetError("no user @usernameBlogs") }
@@ -31,7 +35,6 @@ export default function UserNameBlogs({ username }: usernameType) {
         if (!client) return
         setUserFiles(client.files)
     }, [setUserFiles, setClient, client])
-
 
 
     React.useEffect(() => {
@@ -67,4 +70,12 @@ export default function UserNameBlogs({ username }: usernameType) {
             </section>
         </main>
     )
+}
+
+export async function getUsernamePage(username: string): Promise<userTypeShort | undefined> {
+    const res = await fetch(`${url}/api/getusernamepage?username=${username}`);
+    if (res.ok) {
+        const user: userTypeShort = await res.json();
+        return user
+    }
 }

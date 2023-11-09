@@ -5,7 +5,7 @@ import UserNameBlogs from "@/components/blog/users/UserNameBlogs";
 import type { Metadata, ResolvingMetadata } from 'next';
 import { userTypeShort } from '@/lib/Types';
 
-// const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : process.env.NEXT_PUBLIC_local
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : "http://localhost:3000"
 
 export default async function userName({ params }: { params: { username: string } }) {
     const { username } = params;
@@ -34,7 +34,7 @@ export async function generateMetadata(
 
     // fetch data
     const user_name = username.replace("-", " ")
-    const res = await fetch(`/api/getusermeta?username=${username}`);
+    const res = await fetch(`${url}/api/getusermeta?username=${username}`);
     const body: userTypeShort = await res.json();
     const image = (body && body.image) ? body.image : "/images/gb_logo.png"
 
