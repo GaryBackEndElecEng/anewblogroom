@@ -8,6 +8,7 @@ import PostForm from "./PostForm";
 import MakeAPostItem from "./MakeAPostItem";
 import { InputContext } from '../context/InputTypeProvider';
 
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : "http://localhost:3000"
 
 type mainAccType = {
     getAccount: userAccountType | undefined,

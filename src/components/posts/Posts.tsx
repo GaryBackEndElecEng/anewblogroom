@@ -14,7 +14,7 @@ import Header from "./Header";
 import { useRouter } from "next/navigation";
 import { msgType } from '@lib/Types';
 import Msg from "@component/posts/Msg";
-const url = "http://localhost:3000"
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : "http://localhost:3000"
 
 type mainType = {
     get_users: userType[] | undefined

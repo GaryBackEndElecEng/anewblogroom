@@ -7,7 +7,7 @@ import { GeneralContext } from '../context/GeneralContextProvider';
 import DetailPostUser from "@component/posts/DetailPostUser";
 import DetailPostPopup from "@component/posts/DetailPostPopup";
 
-const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : process.env.NEXT_PUBLIC_local
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : "http://localhost:3000"
 
 type likeType = {
     name: string,

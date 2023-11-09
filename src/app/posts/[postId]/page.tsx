@@ -6,7 +6,7 @@ import DetailPost from "@component/posts/DetailPost";
 import { Metadata, ResolvingMetadata } from 'next';
 
 
-const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : process.env.NEXT_PUBLIC_local
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : "http://localhost:3000"
 
 type params = {
     postId: string
