@@ -4,7 +4,7 @@ import axios from 'axios'
 import React from 'react';
 import DetailPost from "@component/posts/DetailPost";
 import { Metadata, ResolvingMetadata } from 'next';
-import { getPostDetail } from "@lib/serverGets";
+
 
 const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : process.env.NEXT_PUBLIC_local
 
@@ -14,13 +14,13 @@ type params = {
 
 
 export default async function postdetail({ params }: { params: { postId: string } }) {
-    const postId: number = parseInt(params.postId)
-    const post: postType | undefined = await getPostDetail(postId);
+    const postId: string = params.postId;
 
-    if (post) {
+
+    if (postId) {
         return (
             <div>
-                <DetailPost post={post} />
+                <DetailPost postId={postId} />
             </div>
         )
     } else {
@@ -31,48 +31,49 @@ export default async function postdetail({ params }: { params: { postId: string 
 }
 
 
-type Props = {
-    params: { postId: string }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
-export async function generateMetadata(
-    { params }: Props,
-    parent: ResolvingMetadata
-): Promise<Metadata> {
-    // read route params
-    const { postId } = params
 
-    // fetch data
-    const res = await fetch(`${url}/api/postdetail?postId=${postId}`);
-    const post: postType | undefined = await res.json();
-    if (post && post.bloglink && post.imageUrl) {
-        const image = (post && post.imageUrl) ? post.imageUrl : "/images/gb_logo.png";
-        let avgRate: number = 0;
-        if (post.rates && post.rates.length > 0) {
-            const avgRatingRaw = post.rates.reduce((a, b) => (a + b.rate), 0);
-            avgRate = Math.ceil(avgRatingRaw) / (post.rates.length);
-        }
+// type Props = {
+//     params: { postId: string | number }
+//     searchParams: { [key: string]: string | string[] | undefined }
+// }
+// export async function generateMetadata(
+//     { params }: Props,
+//     parent: ResolvingMetadata
+// ): Promise<Metadata> {
+//     // read route params
+//     const { postId } = params
+//     const post_Id = parseInt(postId as string);
+//     // fetch data
 
-        // optionally access and extend (rather than replace) parent metadata
-        const previousImages = (await parent).openGraph?.images || []
-        const prevDesc = (await parent).openGraph?.description;
+//     const post: postType | undefined = await getPostDetail(post_Id)
+//     if (post && post.bloglink && post.imageUrl) {
+//         const image = (post && post.imageUrl) ? post.imageUrl : "/images/gb_logo.png";
+//         let avgRate: number = 0;
+//         if (post.rates && post.rates.length > 0) {
+//             const avgRatingRaw = post.rates.reduce((a, b) => (a + b.rate), 0);
+//             avgRate = Math.ceil(avgRatingRaw) / (post.rates.length);
+//         }
 
-        const desc = (post && post.content && prevDesc) ? `${[post.content, prevDesc].join(": general;")}` : `${post.name} post description of an author's blog.`;
-        const blogUrl = (post && post.bloglink) ? post.bloglink : "#"
+//         // optionally access and extend (rather than replace) parent metadata
+//         const previousImages = (await parent).openGraph?.images || []
+//         const prevDesc = (await parent).openGraph?.description;
 
-        return {
-            title: `${post && post.name && post.name}:Rating: ${avgRate}- Blog Room Page`,
-            description: desc,
+//         const desc = (post && post.content && prevDesc) ? `${[post.content, prevDesc].join(": general;")}` : `${post.name} post description of an author's blog.`;
+//         const blogUrl = (post && post.bloglink) ? post.bloglink : "#"
 
-            openGraph: {
-                images: [image, ...previousImages],
-                url: blogUrl,
-            },
-        }
-    } else {
-        return {
-            title: ` Blog Room post detail Page`,
-            description: "The Blog Room - post detail page",
-        }
-    }
-}
+//         return {
+//             title: `${post && post.name && post.name}:Rating: ${avgRate}- Blog Room Page`,
+//             description: desc,
+
+//             openGraph: {
+//                 images: [image, ...previousImages],
+//                 url: blogUrl,
+//             },
+//         }
+//     } else {
+//         return {
+//             title: ` Blog Room post detail Page`,
+//             description: "The Blog Room - post detail page",
+//         }
+//     }
+// }

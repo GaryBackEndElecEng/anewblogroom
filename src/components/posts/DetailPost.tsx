@@ -4,30 +4,38 @@ import React from 'react';
 import Image from 'next/image';
 import getFormattedDate from "@lib/getFormattedDate"
 import { GeneralContext } from '../context/GeneralContextProvider';
-import { getUser } from "@lib/fetchTypes";
 import DetailPostUser from "@component/posts/DetailPostUser";
 import DetailPostPopup from "@component/posts/DetailPostPopup";
+
+const url = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_site : process.env.NEXT_PUBLIC_local
 
 type likeType = {
     name: string,
     count: number
 }
 type mainDetailType = {
-    post: postType | undefined
+    postId: string | undefined
 }
 
-export default function DetailPost({ post }: mainDetailType) {
-    const { setUser, user, } = React.useContext(GeneralContext);
+export default function DetailPost({ postId }: mainDetailType) {
+    const { setUser, user, setPost, post } = React.useContext(GeneralContext);
     const [rateAvg, setRateAvg] = React.useState<number>(0);
     const [likeCntArr, setLikeCntArr] = React.useState<likeType[]>([]);
     const [popup, setPopup] = React.useState<boolean>(false);
 
     React.useMemo(async () => {
+        if (!postId) return
+        const post_ = await getPostDetail(postId);
+        if (!post_) return
+        setPost(post_)
+    }, [postId, setPost]);
+
+    React.useMemo(async () => {
         if (!post) return
-        const getuser = await getUser(post.userId) as userTypeShort as userType;
+        const getuser = await getUser(post.userId);
         if (!getuser) return
-        setUser(getuser)
-    }, [setUser, post]);
+        setUser(getuser as userType)
+    }, [post, setUser]);
 
     React.useEffect(() => {
         if (!(post && post.rates)) return
@@ -52,7 +60,7 @@ export default function DetailPost({ post }: mainDetailType) {
         <div className="mx-auto lg:container  my-2 px-1 sm:px-2 flex flex-col justify-center items-center">
 
             {post &&
-                <div className="postcard prose prose-lg prose-invert relative">
+                <div className="postcard prose prose-lg prose-invert relative mx-auto">
                     {popup && <DetailPostPopup setPopup={setPopup} popup={popup} link={post.bloglink} />}
                     {post && post.imageUrl &&
                         <div onClick={() => setPopup(true)}>
@@ -68,7 +76,7 @@ export default function DetailPost({ post }: mainDetailType) {
                         {post.name}
                     </h3>
                     <p className="mx-auto leading-[1.75rem] px-1 sm:px-2">{post.content}</p>
-                    <div className="flex flex-row my-2 gap-4 font-bold">
+                    <div className="flex flex- flex-wrap my-2 gap-4 font-bold items-center justify-center">
                         <small className="mx-auto">
                             {post.date && getFormattedDate(post.date)}
                         </small>
@@ -108,3 +116,24 @@ export default function DetailPost({ post }: mainDetailType) {
         </div>
     )
 }
+export async function getPostDetail(postId: string) {
+    if (postId) {
+        const res = await fetch(`${url}/api/postdetail?postId=${postId}`);
+        if (res.ok) {
+            const post: postType = await res.json();
+            return post
+        }
+    }
+}
+
+export async function getUser(userId: string) {
+    if (userId) {
+        const res = await fetch(`${url}/api/getuser?userId=${userId}`);
+        if (res.ok) {
+            const user: userTypeShort = await res.json();
+            return user
+        }
+    }
+}
+
+

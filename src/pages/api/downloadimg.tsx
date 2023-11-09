@@ -21,7 +21,7 @@ export const s3 = new S3Client({
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     const Key = req.query.Key as string;
-    console.log("Key", Key)
+    // console.log("Key", Key)
     if (!(Key)) res.status(400).json({ imageUrl: null, key: null })
     try {
         const params = {

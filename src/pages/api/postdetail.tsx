@@ -21,15 +21,15 @@ export const s3 = new S3Client({
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
 
-    const getQuery = req.query;
-    const { postId } = getQuery;
-    // console.log(req.query, "HERE")
+    const postId = req.query.postId;
+
     if (postId) {
+        const id = parseInt(postId as string)
         try {
 
             const post = await prisma.post.findUnique({
                 where: {
-                    id: parseInt(postId as string)
+                    id: id
                 },
                 include: {
                     rates: true,
@@ -37,9 +37,18 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 }
             });
             if (post) {
-                const insertPost = insertUrlPost(post as postType);
-                res.status(200).json(insertPost)
-                await prisma.$disconnect()
+                let tempPost = post;
+                if (tempPost.s3Key) {
+                    const s3Params = {
+                        Bucket,
+                        Key: tempPost.s3Key,
+                    };
+                    const command = new GetObjectCommand(s3Params);
+                    const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+                    tempPost.imageUrl = url;
+                }
+                res.status(200).json(tempPost)
+
             } else {
                 res.status(404).json({ message: "could not find item@postdetail" })
                 await prisma.$disconnect()
@@ -54,15 +63,4 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     } else {
         res.status(404).json({ message: "no recieved query item from postdetail" })
     }
-}
-export async function insertUrlPost(post: postType) {
-    if (!post.s3Key) return post
-    const s3Params = {
-        Bucket: process.env.BUCKET_NAME as string,
-        Key: post.s3Key,
-    };
-    const command = new GetObjectCommand(s3Params);
-    post.imageUrl = await getSignedUrl(s3, command, { expiresIn: 3600 });
-    return post
-
 }

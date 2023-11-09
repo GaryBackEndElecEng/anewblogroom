@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import type { userType } from "@/lib/Types";
+import type { userType, userTypeShort } from "@/lib/Types";
 import prisma from "@_prisma/client";
 import "@aws-sdk/signature-v4-crt"
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
@@ -29,13 +29,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
         });
         if (user) {
-            if (user.imgKey) {
-                const userInsertImg = await insertImgUser(user as userType)
-                res.status(200).json(userInsertImg)
-            } else {
-                res.status(200).json(user)
-            }
-            await prisma.$disconnect();
+
+            const userInsertImg = await insertImgUser(user as userType)
+            res.status(200).json(userInsertImg)
         } else {
             res.status(404).json({ message: "no user found@getuser" })
         }
@@ -46,15 +42,16 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     }
 }
 
-export async function insertImgUser(user: userType) {
+export async function insertImgUser(user: userType): Promise<userTypeShort> {
+    let tempUser: userTypeShort = user as userTypeShort;
 
-    if (!user.imgKey) return user
+    if (!tempUser.imgKey) return tempUser
     const params = {
-        Key: user.imgKey,
+        Key: tempUser.imgKey,
         Bucket
     }
     const command = new GetObjectCommand(params);
     const imageUrl = await getSignedUrl(s3, command, { expiresIn: 3600 })
-    user.image = imageUrl ? imageUrl : undefined;
-    return user
+    tempUser.image = imageUrl ? imageUrl : undefined;
+    return tempUser
 }

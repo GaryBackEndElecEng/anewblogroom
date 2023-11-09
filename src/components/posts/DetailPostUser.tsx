@@ -11,11 +11,11 @@ type mainUseType = {
 export default function DetailPostUser({ user }: mainUseType) {
     const url = "/images/gb_logo";
     return (
-        <div className="mx-auto prose prose-md prose-invert px-1">
+        <div className="mx-auto  px-1">
             {(user && user.name && user.bio) &&
                 <div className="flex flex-col items-start justify-center mx-auto ">
                     <h3 className="text-center text-xl mb-2">{user.name}</h3>
-                    <p className="text-lg leading-[1.25rem] text-slate-20 mx-auto px-1">
+                    <p className="text-lg leading-[1.25rem] text-slate-20 mx-auto px-2 sm:px-4 w-full sm:w-3/4">
                         <Image
                             src={user.image ? user.image : " url"}
                             alt={user.name}

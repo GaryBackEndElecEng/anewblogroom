@@ -14,6 +14,7 @@ import Header from "./Header";
 import { useRouter } from "next/navigation";
 import { msgType } from '@lib/Types';
 import Msg from "@component/posts/Msg";
+const url = "http://localhost:3000"
 
 type mainType = {
     get_users: userType[] | undefined
@@ -85,7 +86,7 @@ export default function Posts() {
 
 export async function getPosts() {
 
-    const res = await fetch(`/api/getposts`);
+    const res = await fetch(`${url}/api/getposts`);
     if (res.ok) {
         const posts: postType[] | undefined = await res.json();
         return posts

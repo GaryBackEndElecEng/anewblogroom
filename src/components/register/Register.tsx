@@ -55,7 +55,7 @@ const Register = ({ genHash }: mainRegisterType) => {
 
             try {
                 const { data } = await axios.post(`api/register`, Data);
-                console.log(data)
+
                 const body: userType = data as userType;
                 setMsg({ loaded: true, msg: "logged in" })
                 setUser(body);

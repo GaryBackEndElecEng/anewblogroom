@@ -38,7 +38,7 @@ export default async function handleFile(req: NextApiRequest, res: NextApiRespon
                 rates: true,
             }
         });
-        console.log(file)
+        // console.log(file)
         if (file) {
             const retInsertFile = insertFileUrls(file as unknown as fileType);
             // console.log("getfile.tsx=> returned file", retInsertFile)
