@@ -50,7 +50,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     }
 }
 
-export async function insertUrlPost(post: postType) {
+async function insertUrlPost(post: postType) {
     if (!post.s3Key) return post
     const s3Params = {
         Bucket: process.env.BUCKET_NAME as string,
@@ -61,7 +61,7 @@ export async function insertUrlPost(post: postType) {
     return post
 
 }
-export async function insertUrlPosts(posts: postType[]) {
+async function insertUrlPosts(posts: postType[]) {
     if (!posts) return
     const arrPost: postType[] = await Promise.all(
         posts.map(async (post) => await insertUrlPost(post))

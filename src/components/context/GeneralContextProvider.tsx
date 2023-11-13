@@ -147,6 +147,25 @@ const GeneralContextProvider = (props: any) => {
         getGenInfo();
 
     }, []);
+    React.useEffect(() => {
+        const getGenInfo = async () => {
+
+            try {
+                const { data } = await axios.get(`/api/getposts`);
+                //components
+                const body: postType[] = await data as postType[];
+
+                setPosts(body);
+            } catch (error) {
+                let message: string = `${getErrorMessage(error)}@api/generalInfo`
+                setGetError(message)
+                return console.log(message)
+            }
+        }
+
+        getGenInfo();
+
+    }, []);
 
 
     return (

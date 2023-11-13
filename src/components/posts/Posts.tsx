@@ -32,16 +32,16 @@ export default function Posts() {
     }, [pathname, setPageHit]);
 
 
-    React.useMemo(async () => {
-        const getposts = await getPosts();
-        if (getposts) {
-            setPosts(getposts);
-            setMsg({ loaded: true, msg: "recieved" });
-        } else {
-            setMsg({ loaded: false, msg: "no posts" });
-            setGetError(" no posts")
-        }
-    }, [setPosts, setMsg, setGetError]);
+    // React.useMemo(async () => {
+    //     const getposts = await getPosts();
+    //     if (getposts) {
+    //         setPosts(getposts);
+    //         setMsg({ loaded: true, msg: "recieved" });
+    //     } else {
+    //         setMsg({ loaded: false, msg: "no posts" });
+    //         setGetError(" no posts")
+    //     }
+    // }, [setPosts, setMsg, setGetError]);
 
     const handleLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, postId: number | undefined) => {
         e.preventDefault()
