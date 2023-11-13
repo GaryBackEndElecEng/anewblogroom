@@ -39,7 +39,7 @@ export default function UserHomeLinksLayout({
 }) {
     return (
         <div>
-            <HomeLinksHeader />
+            {/* <HomeLinksHeader /> */}
             {children}
         </div>
     )

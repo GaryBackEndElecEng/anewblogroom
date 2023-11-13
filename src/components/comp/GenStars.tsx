@@ -4,7 +4,7 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import styles from "@component/posts/posts.module.css";
 
-export default function GenStars({ rate }: { rate: number }) {
+export default function GenStars({ rate }: { rate: number | null }) {
     let arr: number[] = [1, 2, 3, 4, 5]
     const rateArr = [
         { id: 1, name: "full", icon: <StarIcon sx={{ color: "gold" }} /> },

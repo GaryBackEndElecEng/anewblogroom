@@ -39,7 +39,7 @@ export default function BlogLayout({
 }) {
     return (
         <div>
-            <BlogHeader />
+            {/* <BlogHeader /> */}
             <GetError />
             {children}
         </div>

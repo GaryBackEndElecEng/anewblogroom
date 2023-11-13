@@ -5,6 +5,7 @@ import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } fro
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import "@aws-sdk/signature-v4-crt";
 
+
 const Bucket = process.env.BUCKET_NAME as string
 const region = process.env.BUCKET_REGION as string
 const accessKeyId = process.env.SDK_ACCESS_KEY as string
@@ -38,10 +39,11 @@ export default async function handleFile(req: NextApiRequest, res: NextApiRespon
                 rates: true,
             }
         });
-        // console.log(file)
+
         if (file) {
-            const retInsertFile = insertFileUrls(file as unknown as fileType);
+            const retInsertFile = await insertFileUrls(file as unknown as fileType);
             res.setHeader('Cache-Control', 'max-age=14400')
+
             res.status(200).json(retInsertFile)
         } else {
             res.status(400).json({ message: `bad request` })
@@ -49,6 +51,8 @@ export default async function handleFile(req: NextApiRequest, res: NextApiRespon
         await prisma.$disconnect();
     } catch (error) {
         res.status(500).json({ message: "server issue at create/add file" })
+    } finally {
+        await prisma.$disconnect()
     }
 
 

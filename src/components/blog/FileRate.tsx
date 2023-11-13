@@ -22,21 +22,23 @@ type mainIconType = {
 
 }
 type mainFileLikeType = {
-    file: fileType,
+    file: fileType | null,
 
 }
 export default function FileRate({ file }: mainFileLikeType) {
     const rateNumArr: number[] = [0, 1, 2, 3, 4, 5]
     const { setFileRates, fileRates } = React.useContext(GeneralContext);
-    const [rate, setRate] = React.useState<number>(0);
+    const [rate, setRate] = React.useState<number | null>(null);
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const tempFileRate: ratefileType = { rate: rate, fileId: file.id as string }
-        const updateFileRate = await sendFileRate(tempFileRate);
-        if (!updateFileRate) return
-        setFileRates([...fileRates, updateFileRate])
+        if (file && rate) {
+            const tempFileRate: ratefileType = { rate: rate, fileId: file.id as string }
+            const updateFileRate = await sendFileRate(tempFileRate);
+            if (!updateFileRate) return
+            setFileRates([...fileRates, updateFileRate])
+        }
 
     }
     return (

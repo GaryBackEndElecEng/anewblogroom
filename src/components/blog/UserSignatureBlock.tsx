@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 
 type SignType = {
-    file: fileType,
+    file: fileType | null,
     user: userType | null
 }
 export default function UserSignatureBlock({ file, user }: SignType) {

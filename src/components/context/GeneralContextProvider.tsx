@@ -124,7 +124,7 @@ const GeneralContextProvider = (props: any) => {
             }
         }
         if (pageHit) {
-            // recordHit();
+            recordHit();
         }
     }, [pageHit]);
 

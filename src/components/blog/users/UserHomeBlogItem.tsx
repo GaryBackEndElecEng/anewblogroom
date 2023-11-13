@@ -23,7 +23,7 @@ type mainBlogItemType = {
 }
 //////////NOTE!! THIS IS FROM blog/usershomelinks/username/file_ID/////////
 
-export default function UserBlogItem({ file_ }: mainBlogItemType) {
+export default function UserHomeBlogItem({ file_ }: mainBlogItemType) {
     const pathname = usePathname();
     const { setPageHit, setUser, user } = React.useContext(GeneralContext);
     const { setFile } = React.useContext(InputContext);
@@ -134,7 +134,7 @@ export default function UserBlogItem({ file_ }: mainBlogItemType) {
     )
 }
 
-async function getUser(userId: string): Promise<userType | undefined> {
+export async function getUser(userId: string): Promise<userType | undefined> {
     const res = await fetch(`${url}/api/getuser?userId=${userId}`);
     if (res.ok) {
         const body: userType = await res.json()

@@ -21,7 +21,7 @@ type mainIconType = {
 
 }
 type mainFileLikeType = {
-    file: fileType,
+    file: fileType | null,
 
 }
 export default function FileLike({ file }: mainFileLikeType) {
@@ -42,7 +42,8 @@ export default function FileLike({ file }: mainFileLikeType) {
     const handlePic = async (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, obj: mainIconType) => {
         e.preventDefault();
         setNamed({ id: obj.id, name: obj.name, icon: obj.icon, class: obj.class });
-        const tempFileLike: likefileType = { name: obj.name, fileId: file.id as string }
+        const tempFileLike: likefileType | null = file && { name: obj.name, fileId: file.id as string }
+        if (!tempFileLike) return
         const updateFilelike = await sendFileLike(tempFileLike);
         if (!updateFilelike) return
         setFileLikes([...fileLikes, updateFilelike])
