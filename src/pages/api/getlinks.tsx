@@ -15,6 +15,8 @@ export default async function handleLink(req: NextApiRequest, res: NextApiRespon
 
     } catch (error) {
         await prisma.$disconnect()
+    } finally {
+        await prisma.$disconnect()
     }
 
 

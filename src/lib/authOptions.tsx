@@ -6,7 +6,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { hashKey, hashComp } from "@lib/ultils";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { userAccountType, userType } from "@lib/Types";
-const logo = `${process.env.NEXT_PUBLIC_aws}/logo.png`
+const logo = `${process.env.NEXT_PUBLIC_aws_static}/logo.png`
 
 
 
