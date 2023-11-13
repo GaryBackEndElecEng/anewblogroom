@@ -44,9 +44,11 @@ export default async function handleFile(req: NextApiRequest, res: NextApiRespon
             const retInsertFile = await insertFileUrls(file as unknown as fileType);
             res.setHeader('Cache-Control', 'max-age=14400')
 
-            res.status(200).json(retInsertFile)
+            res.status(200).json(retInsertFile);
+            await prisma.$disconnect()
         } else {
-            res.status(400).json({ message: `bad request` })
+            res.status(400).json({ message: `bad request` });
+            await prisma.$disconnect()
         }
         await prisma.$disconnect();
     } catch (error) {

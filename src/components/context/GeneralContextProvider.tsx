@@ -107,6 +107,7 @@ const GeneralContextProvider = (props: any) => {
                 return console.error(message)
             }
         }
+        getpageHits();
 
     }, []);
 

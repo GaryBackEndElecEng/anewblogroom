@@ -80,18 +80,18 @@ const authOptions: NextAuthOptions = {
         strategy: "jwt"
     },
     providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_client_ID as string,
-            clientSecret: process.env.GOOGLE_client_secret as string,
-            // authorization: {
-            //   params: {
-            //     prompt: "consent",
-            //     access_type: "offline",
-            //     response_type: "code"
-            //   }
-            // }
+        // GoogleProvider({
+        //     clientId: process.env.GOOGLE_client_ID as string,
+        //     clientSecret: process.env.GOOGLE_client_secret as string,
+        //     // authorization: {
+        //     //   params: {
+        //     //     prompt: "consent",
+        //     //     access_type: "offline",
+        //     //     response_type: "code"
+        //     //   }
+        //     // }
 
-        }),
+        // }),
         CredentialsProvider({
 
             // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -144,7 +144,7 @@ const authOptions: NextAuthOptions = {
         logo: logo, // Absolute URL to image
     },
 
-    debug: process.env.NODE_ENV === "development"
+    // debug: process.env.NODE_ENV === "development"
 
 }
 export default authOptions;

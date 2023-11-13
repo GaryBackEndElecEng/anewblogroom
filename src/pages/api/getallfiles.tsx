@@ -32,13 +32,16 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         });
         if (allFiles) {
             const files: fileType[] = allFiles;
-            const getFiles = insertFilesUrls(files)
+            const getFiles = await insertFilesUrls(files)
             res.status(200).json(getFiles)
+            await prisma.$disconnect();
         } else {
             res.status(404).json({ message: "no files found from getallfiles" })
         }
     } catch (error) {
         throw new Error("server error from api/getallFiles()")
+    } finally {
+        await prisma.$disconnect()
     }
 }
 
