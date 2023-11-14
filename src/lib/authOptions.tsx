@@ -10,13 +10,16 @@ const logo = `${process.env.NEXT_PUBLIC_aws_static}/logo.png`
 
 
 
-let prisma: PrismaClient
+let prisma: PrismaClient;
+let baseurl: string | undefined;
 
 if (process.env.NODE_ENV === 'production') {
+    baseurl = process.env.NEXTAUTH_URL as string;
     prisma = new PrismaClient({
         datasourceUrl: process.env.DATABASE_URL_AWS
     });
 } else {
+    baseurl = "http://localhost:3000";
     prisma = new PrismaClient({
         datasourceUrl: process.env.DATABASE_URL_AWS
     });
@@ -37,7 +40,7 @@ const authOptions: NextAuthOptions = {
 
         },
         async redirect({ url, baseUrl }) {
-
+            baseurl = baseurl;
             // Allows relative callback URLs in the middleware(match)
 
             if (url.startsWith("/register")) {
